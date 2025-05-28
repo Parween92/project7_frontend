@@ -9,9 +9,9 @@ function Navbar() {
         </NavLink>
 
         <ul className="flex gap-8">
-          <li className="text-[#f6c30a] font-bold hover:underline hover:text-[#544100]">
+          {/* <li className="text-[#f6c30a] font-bold hover:underline hover:text-[#544100]">
             <NavLink to="/Home">Home</NavLink>
-          </li>
+          </li> */}
 
           <li className="text-[#f6c30a] font-bold hover:underline hover:text-[#544100]">
             <NavLink to="/postDetails">Post Details</NavLink>
