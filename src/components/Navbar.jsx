@@ -5,7 +5,7 @@ function Navbar() {
     <header className="bg-primary ">
       <nav className=" flex items-center justify-between pl-8 pr-8">
         <NavLink to="">
-          <img src="Travel-Logo.png" alt="Website-Logo" className="w-[80px]" />
+          <img src="/Travel-Logo.png" alt="Website-Logo" className="w-[80px]" />
         </NavLink>
 
         <ul className="flex gap-8">

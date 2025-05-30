@@ -47,26 +47,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//     return (
-//     <div>
-//       <h2 className="">Travel Stories & Adventures from Around the World</h2>
-//       {error && <p>{error}</p>}
-//       {loading ? (
-//         <p>Loading ...</p>
-//       ) : (
-//         Posts.map((post) => (
-//           <div key={post.id}>
-//             <h3>{post.author}</h3>
-//             <h4>{post.title}</h4>
-//             <p>{post.content}</p>
-//             <img
-//               src={post.cover}
-//               alt={post.title}
-//               className="w-full h-40 object-cover rounded mb-3"
-//             />
-//           </div>
-//         ))
-//       )}
-//     </div>
-//   );
