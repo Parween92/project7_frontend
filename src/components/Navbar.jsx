@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
-    <header className="bg-[#83a0c7] ">
-      <nav className=" flex items-center justify-evenly">
+    <header className="bg-primary ">
+      <nav className=" flex items-center justify-between pl-8 pr-8">
         <NavLink to="">
           <img src="Travel-Logo.png" alt="Website-Logo" className="w-[80px]" />
         </NavLink>
@@ -13,8 +13,8 @@ function Navbar() {
             <NavLink to="/Home">Home</NavLink>
           </li> */}
 
-          <li className="text-[#f6c30a] font-bold hover:underline hover:text-[#544100]">
-            <NavLink to="/postDetails">Post Details</NavLink>
+          <li className="text-accent font-bold hover:underline hover:text-secondary">
+            <NavLink to="/Fav">Fav</NavLink>
           </li>
         </ul>
       </nav>

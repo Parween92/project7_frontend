@@ -1,7 +1,7 @@
 import Home from "./pages/Home.jsx";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layout/MainLayout.jsx";
-import postDetails from "./pages/postDetails.jsx";
+import PostDetails from "./pages/postDetails.jsx";
 
 function App() {
   return (
@@ -10,7 +10,8 @@ function App() {
         {/* Route MainLayout für die Seite */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="postDetails" element={<postDetails />} />
+          <Route path="/posts/:id" element={<PostDetails />} />
+          {/* <Route path="postDetails" element={<postDetails />} /> */}
         </Route>
       </Routes>
     </>

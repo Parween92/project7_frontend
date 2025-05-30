@@ -1,58 +1,72 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { getAllPosts } from "../components/AllRequest";
+import PostCard from "../components/PostCard";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [postData, setPostData] = useState([]);
+  const [Posts, setPosts] = useState([]);
 
+  const fetchAllPosts = async () => {
+    try {
+      setLoading(true);
+      const response = await getAllPosts();
+      setPosts(response.data);
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchAllPosts = async () => {
-      try {
-        setLoading(true);
-
-        const response = await axios.get(getAllPosts);
-        setPostData(response.data.results);
-      } catch (error) {
-        console.error(error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchAllPosts();
   }, []);
 
-  console.log(getAllPosts);
-
   return (
-    <div className="">
-      {postData.title}
-      {postData.author}
-      {/* <h2 className="text-3xl font-bold text-white text-center mb-6">EVENTS</h2>
-
-      {error && <p className="text-red-200 text-center font-medium">{error}</p>}
-
+    <div className="p-8">
+      <h2 className="text-3xl font-black text-secondary mb-4">
+        Travel Stories & Adventures from Around the World
+      </h2>
+      {error && <p>{error}</p>}
       {loading ? (
-        <p className="text-white text-center">Loading...</p>
+        <p>Loading ...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-          {postData.map(() => (
-            <div
-              key={postData.id}
-              className="bg-gray-900 rounded-2xl shadow-lg p-4 flex flex-col 
-              justify-between hover:shadow-2xl transition-shadow duration-300"
-            >
-              <h3 className="text-lg font-semibold text-center text-white bg-indigo-600 px-4 py-2 rounded-xl mb-4 shadow">
-                {postData.author}
-              </h3>
-            </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Posts.map((post) => (
+            <PostCard
+              key={post.id}
+              post={post}
+              onDeleteSuccess={fetchAllPosts}
+            />
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 };
 
 export default Home;
+
+//     return (
+//     <div>
+//       <h2 className="">Travel Stories & Adventures from Around the World</h2>
+//       {error && <p>{error}</p>}
+//       {loading ? (
+//         <p>Loading ...</p>
+//       ) : (
+//         Posts.map((post) => (
+//           <div key={post.id}>
+//             <h3>{post.author}</h3>
+//             <h4>{post.title}</h4>
+//             <p>{post.content}</p>
+//             <img
+//               src={post.cover}
+//               alt={post.title}
+//               className="w-full h-40 object-cover rounded mb-3"
+//             />
+//           </div>
+//         ))
+//       )}
+//     </div>
+//   );
