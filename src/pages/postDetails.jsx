@@ -63,7 +63,7 @@ export default function PostDetails() {
         ) : (
           "No category"
         )}
-      </p>{" "}
+      </p>
       <p className="text-sm text-white">Status: {post.status}</p>
       <div className="mt-6 flex gap-4">
         <button
@@ -74,7 +74,7 @@ export default function PostDetails() {
         >
           {" "}
           <BiArrowBack size={20} />
-          Zurück
+          Go back
         </button>
         <button
           onClick={() => navigate(`/posts/${id}/edit`)}

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { createPost } from "../components/AllRequest";
 import { MdSave } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // window.createPost = createPost;
 export default function PostForm({ onSuccess }) {
@@ -14,6 +16,7 @@ export default function PostForm({ onSuccess }) {
   });
 
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   //success für Save Button status
   const [success, setSuccess] = useState(false);
 
@@ -55,6 +58,15 @@ export default function PostForm({ onSuccess }) {
       console.error("❌ Error creating:", error);
       setError("Creation failed.");
     }
+    Swal.fire({
+      toast: true,
+      position: "center",
+      icon: "success",
+      title: "your Form has been submitten",
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: true,
+    });
   };
 
   return (
@@ -141,6 +153,7 @@ export default function PostForm({ onSuccess }) {
         </select>
       </div>
       <button
+        onClick={() => navigate(-1)}
         type="submit"
         className="flex gap-1 items-center bg-primary mt-5 mb-5 px-2 py-2  hover:bg-accent text-white rounded"
       >
