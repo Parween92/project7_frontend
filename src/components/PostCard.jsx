@@ -2,6 +2,8 @@ import { deletePost } from "./AllRequest";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { MdDeleteForever } from "react-icons/md";
+import { MdEditSquare } from "react-icons/md";
+import { IoMdArrowRoundForward } from "react-icons/io";
 
 function PostCard({ post, onDeleteSuccess }) {
   console.log("Post im Card:", post);
@@ -56,7 +58,7 @@ function PostCard({ post, onDeleteSuccess }) {
       <div className="flex gap-8 mt-4 justify-between">
         <button
           onClick={handleDelete}
-          className=" flex gap-2 bg-red-500 text-white px-3 py-1 rounded"
+          className=" flex items-center gap-1 bg-red-500 text-white px-3 py-1 rounded"
         >
           <MdDeleteForever size={20} />
           Delete
@@ -66,14 +68,16 @@ function PostCard({ post, onDeleteSuccess }) {
 
         <button
           onClick={goToDetails}
-          className="bg-accent text-white px-3 py-1 rounded"
+          className="flex items-center gap-1 bg-accent text-white px-3 py-1 rounded"
         >
+          <IoMdArrowRoundForward />
           Details
         </button>
         <button
           onClick={goToEdit}
-          className="bg-yellow-500 text-white px-3 py-1 rounded"
+          className="bg-yellow-500 text-white px-3 py-1 rounded flex items-center gap-1"
         >
+          <MdEditSquare />
           Edit
         </button>
       </div>

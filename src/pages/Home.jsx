@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-8">
+    <div className="p-8 min-h-screen">
       <h2 className="text-3xl font-black text-secondary mb-4">
         Travel Stories & Adventures from Around the World
       </h2>

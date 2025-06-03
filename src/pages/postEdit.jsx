@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getPostById, updatePost } from "../components/AllRequest";
+import { getPostById, updatePost, deletePost } from "../components/AllRequest";
+import { MdDeleteForever } from "react-icons/md";
+import { MdEditSquare } from "react-icons/md";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function PostEdit() {
   const { id } = useParams();
@@ -42,6 +45,17 @@ export default function PostEdit() {
     fetchPost();
   }, [id]);
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      await deletePost(id);         
+      navigate("/");              
+    } catch (err) {
+      setError("Error deleting post");
+      console.error("Error deleting post:", err);
+    }
+  };
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -60,13 +74,13 @@ export default function PostEdit() {
   if (!post) return null;
 
   return (
-    <div className="p-4">
-      <form onSubmit={handleSubmit}>
+    <div className="p-8 min-h-screen">
+      <form onSubmit={handleSubmit} className="bg-orangehell p-4 rounded-lg w-[35%]">
         <input
           name="title"
           value={form.title}
           placeholder={post.title}
-          className="placeholder:text-black text-2xl font-bold text-black w-full"
+          className="placeholder:text-black text-2xl font-bold text-black w-full border-white rounded-lg p-2 mb-2"
           onChange={handleChange}
         />
 
@@ -74,55 +88,63 @@ export default function PostEdit() {
           name="author"
           value={form.author}
           placeholder={post.author}
-          className="placeholder:text-gray-600 text-sm text-gray-600 mb-2 w-full"
+          className="placeholder:text-gray-600 text-sm text-gray-600 mb-2 border-white rounded-lg p-1"
           onChange={handleChange}
         />
 
         <img
           src={post.cover}
           alt={post.title}
-          className="w-full max-h-80 object-cover rounded mb-4"
+          className="w-full h-40 object-cover rounded mb-3"
         />
 
         <textarea
           name="content"
           value={form.content}
           placeholder={post.content}
-          className="placeholder:text-black w-full mb-2"
+          className="placeholder:text-black w-full border-white rounded-lg p-2 mb-2"
           onChange={handleChange}
         />
 
-        <div className="text-sm text-gray-500 mb-2 flex gap-1">
+        <div className="text-sm text-gray-500 mb-2 flex gap-1 items-baseline">
           <label>Category:</label>
           <input
             name="category"
             value={form.category}
             placeholder={post.category}
-            className="placeholder:text-gray-500 placeholder:text-sm w-full"
+            className="placeholder:text-gray-500 placeholder:text-sm border-white rounded-lg p-1 mb-2"
             onChange={handleChange}
           />
         </div>
 
-        <div className="text-sm text-gray-500 mb-2 flex gap-1">
+        <div className="text-sm text-gray-500 mb-2 flex gap-1 items-baseline">
           <label>Status:</label>
           <input
             name="status"
             value={form.status}
             placeholder={post.status}
-            className="placeholder:text-gray-500 placeholder:text-sm w-full"
+            className="placeholder:text-gray-500 placeholder:text-sm border-white rounded-lg p-1 mb-2"
             onChange={handleChange}
           />
         </div>
 
-        <div className="mt-6 flex gap-4">
+        <div className="flex gap-8 mt-4 justify-between">
+        <button
+          onClick={handleDelete}
+          className="flex items-center gap-1 bg-red-500 text-white px-3 py-1 rounded"
+        >
+          <MdDeleteForever size={20} />
+          Delete
+        </button>
           <button
             onClick={() => navigate(-1)}
-            className="bg-gray-300 px-3 py-1 rounded"
-          >
+            className="bg-accent text-white px-3 py-1 rounded flex items-center gap-1"
+          ><IoMdArrowRoundBack />
             Go Back
           </button>
-          <button type="submit" className="bg-gray-300 px-3 py-1 rounded">
-            Save Changes
+          <button type="submit" className="bg-yellow-500 text-white px-3 py-1 rounded flex items-center gap-1">
+          <MdEditSquare />
+            Edit
           </button>
         </div>
       </form>
