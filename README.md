@@ -1,4 +1,5 @@
-1. für Datum
+1. 
+für Datum
 <!-- 📅 Date:
 {new Date(event.date).toLocaleString("de-DE", {
                     day: "2-digit",

@@ -8,6 +8,8 @@ export default {
         secondary: "#6AB187",
         accent: "#ec9a53",
         orangehell: "#ec9a5366",
+        text: "#646767",
+        hover: "#ec9a53cc",
       },
     },
   },

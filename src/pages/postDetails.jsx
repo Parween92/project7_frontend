@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getPostById } from "../components/AllRequest";
+import { BiArrowBack } from "react-icons/bi";
+import { FiEdit } from "react-icons/fi";
+
+//category wie bei Form/////
+const categoryIcons = {
+  Adventure: "🧗‍♂️",
+  Relaxation: "🌴",
+  Culture: "🏛️",
+  Nature: "🌲",
+};
 
 export default function PostDetails() {
   const { id } = useParams();
@@ -33,31 +43,47 @@ export default function PostDetails() {
   if (!post) return null;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold">{post.title}</h2>
-      <p className="text-sm text-gray-600 mb-2">von {post.author}</p>
+    <div className="p-4 mx-auto w-[70%] flex flex-col bg-primary m-8">
+      <h2 className="text-white text-2xl font-bold">{post.title}</h2>
+      <p className="ml-2 mb-4 text-l font-bold text-white flex items-center gap-1">
+        von {post.author}
+      </p>
       <img
         src={post.cover}
         alt={post.title}
         className="w-full max-h-80 object-cover rounded mb-4"
       />
-      <p className="mb-2">{post.content}</p>
-      <p className="text-sm text-gray-500">Category: {post.category}</p>
-      <p className="text-sm text-gray-500">Status: {post.status}</p>
-
+      <p className="mb-2 text-white ">{post.content}</p>
+      <p className="text-sm text-white">
+        Category:{" "}
+        {post.category ? (
+          <>
+            {categoryIcons[post.category] || "❓"} {post.category}
+          </>
+        ) : (
+          "No category"
+        )}
+      </p>{" "}
+      <p className="text-sm text-white">Status: {post.status}</p>
       <div className="mt-6 flex gap-4">
         <button
           onClick={() => navigate(-1)}
           // navigate(-1): schickt mich eine Seite im Verlauf zurück.
-          className="bg-gray-300 px-3 py-1 rounded"
+          className="flex items-center gap-2 bg-white font-bold hover:bg-accent
+           hover:text-white text-text px-3 py-1 rounded"
         >
+          {" "}
+          <BiArrowBack size={20} />
           Zurück
         </button>
         <button
           onClick={() => navigate(`/posts/${id}/edit`)}
-          className="bg-blue-500 text-white px-3 py-1 rounded"
+          className="flex items-center gap-2 hover:bg-accent hover:text-white
+           bg-white font-bold text-primary px-3 py-1 rounded"
         >
-          Bearbeiten
+          {" "}
+          <FiEdit size={18} />
+          Edit
         </button>
       </div>
     </div>

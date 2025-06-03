@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import { getAllPosts } from "../components/AllRequest";
 import PostCard from "../components/PostCard";
 
+import PostForm from "./PostForm";
+
+
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [Posts, setPosts] = useState([]);
+  //showForm-State anlegen: Form sichtbar sein soll oder nicht.
+  const [showForm, setShowForm] = useState(false);
 
   const fetchAllPosts = async () => {
     try {
@@ -23,11 +28,25 @@ const Home = () => {
     fetchAllPosts();
   }, []);
 
+  // Callback handleSuccess an PostForm übergeben:
+  // --> um nach erfolgreichem Post neue Posts zu laden & Formular zu schließen
+  const handleSuccess = () => {
+    setShowForm(false);
+    fetchAllPosts();
+  };
+  // setShowForm(false): Form wird aus dem UI entfernt.
+
   return (
     <div className="p-8 ">
-      <h2 className="text-3xl font-black text-secondary mb-4">
+      <h2 className="mb-9 text-3xl font-black text-accent ">
         Travel Stories & Adventures from Around the World
       </h2>
+
+      {/* FORM_BUTTON */}
+
+      {/*Wenn showForm true ist, wird <PostForm /> angezeigt. */}
+      {showForm && <PostForm onSuccess={handleSuccess} />}
+
       {error && <p>{error}</p>}
       {loading ? (
         <p>Loading ...</p>

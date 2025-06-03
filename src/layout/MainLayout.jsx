@@ -4,12 +4,6 @@ import { Outlet } from "react-router-dom";
 
 export default function MainLayout() {
   return (
-    // <div>
-    //   <Navbar />
-    //   <Outlet />
-    //   <Footer />
-    // </div>
-
     //Footer muss unten ausgerichtet werden:
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
