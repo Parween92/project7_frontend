@@ -117,7 +117,7 @@ export default function PostEdit() {
           name="author"
           value={form.author}
           placeholder={post.author}
-          className="text-text w-full border px-3 py-2 rounded mb-5"
+          className="text-text border px-3 py-2 rounded mb-5"
           // className="placeholder:text-gray-600 text-sm text-gray-600 mb-2 border-white rounded-lg p-1"
           onChange={handleChange}
         />
@@ -146,7 +146,7 @@ export default function PostEdit() {
           name="content"
           value={form.content}
           placeholder={post.content}
-          className="pl-2 mb-4 bg-transparent border-2 rounded-lg border-text  text-accent w-full"
+          className="text-text w-full border px-3 py-2 rounded mb-5"
           onChange={handleChange}
         />
 
@@ -171,7 +171,7 @@ export default function PostEdit() {
 
         <label
           htmlFor="status"
-          className="ml-4 block font-bold text-text  mb-1"
+          className="block font-bold text-text  mb-1"
         >
           Status
         </label>
