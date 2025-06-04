@@ -73,21 +73,26 @@ export default function PostEdit() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       await updatePost(id, form);
+
+      // Hier kommt Feedback
+      await Swal.fire({
+        toast: true,
+        position: "center",
+        icon: "success",
+        title: "Post is done",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      });
+
+      navigate("/");
+      // Hier soll dann zur Startseite, wenn gespeichert ist
     } catch (err) {
       setError("Error updating post");
     }
-    // Hier kommt Feedback
-    Swal.fire({
-      toast: true,
-      position: "center",
-      icon: "success",
-      title: "Post is done",
-      showConfirmButton: false,
-      timer: 1000,
-      timerProgressBar: true,
-    });
   };
 
   if (loading) return <p>Load post...</p>;
@@ -117,20 +122,8 @@ export default function PostEdit() {
           onChange={handleChange}
         />
 
-        {/* Bild berabeiten kann---> */}
-        <label htmlFor="cover" className="text-text block font-bold mb-1">
-          Cover Image URL
-        </label>
-        <input
-          name="cover"
-          value={form.cover}
-          placeholder="Enter image URL"
-          onChange={handleChange}
-          className="mb-4 w-full bg-transparent border-2 rounded-lg border-text text-accent"
-        />
-        {/* Bild zeigt den aktuellen Wert und pfad zu bearbeiten */}
         <img
-          src={form.cover || post.cover}
+          src={post.cover}
           alt={post.title}
           className="w-full h-40 object-cover rounded mb-3"
         />
@@ -162,7 +155,10 @@ export default function PostEdit() {
           ))}
         </select>
 
-        <label htmlFor="status" className="block font-bold text-text  mb-1">
+        <label
+          htmlFor="status"
+          className="ml-4 block font-bold text-text  mb-1"
+        >
           Status
         </label>
         <select
@@ -179,6 +175,7 @@ export default function PostEdit() {
 
         <div className="flex gap-8 mt-4 justify-between">
           <button
+            type="button"
             onClick={() => navigate(-1)}
             // navigate(-1): schickt mich eine Seite im Verlauf zurück.
             className="flex items-center gap-2 bg-white font-bold hover:bg-accent
@@ -190,7 +187,7 @@ export default function PostEdit() {
           </button>
 
           <button
-            onClick={() => navigate(-1)}
+            // onClick={() => navigate(-1)}
             type="submit"
             className="flex gap-1 items-center bg-primary px-2 py-2  hover:bg-accent text-white rounded"
           >
