@@ -109,7 +109,7 @@ export default function PostEdit() {
           name="title"
           value={form.title}
           placeholder={post.title}
-          className="placeholder:pl-2 mb-4 w-full bg-transparent border-2 rounded-lg border-text  text-accent  text-2xl "
+          className="text-text w-full border px-3 py-2 rounded mb-5 text-2xl "
           onChange={handleChange}
         />
 
@@ -117,7 +117,7 @@ export default function PostEdit() {
           name="author"
           value={form.author}
           placeholder={post.author}
-          className="pl-2 mb-4 bg-transparent border-2 rounded-lg border-text  text-accent "
+          className="text-text w-full border px-3 py-2 rounded mb-5"
           // className="placeholder:text-gray-600 text-sm text-gray-600 mb-2 border-white rounded-lg p-1"
           onChange={handleChange}
         />
@@ -132,7 +132,7 @@ export default function PostEdit() {
           value={form.cover}
           placeholder="Enter image URL"
           onChange={handleChange}
-          className="mb-4 w-full bg-transparent border-2 rounded-lg border-text text-accent"
+          className="text-text w-full border px-3 py-2 rounded mb-5"
         />
 
         {/* Bild zeigt den aktuellen Wert */}
