@@ -38,12 +38,12 @@ export default function PostEdit() {
         const res = await getPostById(id);
         setPost(res.data.data);
         setForm({
-          title: res.data.title,
-          author: res.data.author,
-          cover: res.data.cover,
-          content: res.data.content,
-          category: res.data.category,
-          status: res.data.status,
+          title: res.data.data.title,
+          author: res.data.data.author,
+          cover: res.data.data.cover,
+          content: res.data.data.content,
+          category: res.data.data.category,
+          status: res.data.data.status,
         });
         setLoading(false);
       } catch (err) {
@@ -78,6 +78,7 @@ export default function PostEdit() {
     } catch (err) {
       setError("Error updating post");
     }
+    // Hier kommt Feedback
     Swal.fire({
       toast: true,
       position: "center",
@@ -92,7 +93,6 @@ export default function PostEdit() {
   if (loading) return <p>Load post...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
   if (!post) return null;
-  // Hier kommt Feedback
 
   return (
     <div className="p-8 min-h-screen">
@@ -117,8 +117,20 @@ export default function PostEdit() {
           onChange={handleChange}
         />
 
+        {/* Bild berabeiten kann---> */}
+        <label htmlFor="cover" className="text-text block font-bold mb-1">
+          Cover Image URL
+        </label>
+        <input
+          name="cover"
+          value={form.cover}
+          placeholder="Enter image URL"
+          onChange={handleChange}
+          className="mb-4 w-full bg-transparent border-2 rounded-lg border-text text-accent"
+        />
+        {/* Bild zeigt den aktuellen Wert */}
         <img
-          src={post.cover}
+          src={form.cover || post.cover}
           alt={post.title}
           className="w-full h-40 object-cover rounded mb-3"
         />
@@ -131,16 +143,6 @@ export default function PostEdit() {
           onChange={handleChange}
         />
 
-        {/* <div className="text-sm text-gray-500 mb-2 flex gap-1 items-baseline">
-          <label>Category:</label>
-          <input
-            name="category"
-            value={form.category}
-            placeholder={post.category}
-            className="placeholder:text-gray-500 placeholder:text-sm border-white rounded-lg p-1 mb-2"
-            onChange={handleChange}
-          />
-        </div> */}
         <label htmlFor="category" className="text-text block font-bold mb-1">
           Category
         </label>
@@ -160,16 +162,6 @@ export default function PostEdit() {
           ))}
         </select>
 
-        {/* <div className="text-sm text-gray-500 mb-2 flex gap-1 items-baseline">
-          <label>Status:</label>
-          <input
-            name="status"
-            value={form.status}
-            placeholder={post.status}
-            className="placeholder:text-gray-500 placeholder:text-sm border-white rounded-lg p-1 mb-2"
-            onChange={handleChange}
-          />
-        </div> */}
         <label
           htmlFor="status"
           className="ml-4 block font-bold text-text  mb-1"
@@ -189,14 +181,6 @@ export default function PostEdit() {
         </select>
 
         <div className="flex gap-8 mt-4 justify-between">
-          {/* <button
-            onClick={handleDelete}
-            className="flex items-center gap-1 bg-red-500 text-white px-3 py-1 rounded"
-          >
-            <MdDeleteForever size={20} />
-            Delete
-          </button> */}
-
           <button
             onClick={() => navigate(-1)}
             // navigate(-1): schickt mich eine Seite im Verlauf zurück.
