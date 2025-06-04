@@ -128,7 +128,7 @@ export default function PostEdit() {
           onChange={handleChange}
           className="mb-4 w-full bg-transparent border-2 rounded-lg border-text text-accent"
         />
-        {/* Bild zeigt den aktuellen Wert */}
+        {/* Bild zeigt den aktuellen Wert und pfad zu bearbeiten */}
         <img
           src={form.cover || post.cover}
           alt={post.title}
@@ -162,10 +162,7 @@ export default function PostEdit() {
           ))}
         </select>
 
-        <label
-          htmlFor="status"
-          className="ml-4 block font-bold text-text  mb-1"
-        >
+        <label htmlFor="status" className="block font-bold text-text  mb-1">
           Status
         </label>
         <select
