@@ -95,7 +95,7 @@ function PostCard({ post, onDeleteSuccess }) {
 
         <button
           onClick={handleDelete}
-          className=" flex gap-2 bg-red-500 text-white px-3 py-1 rounded"
+          className=" flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded font-bold"
         >
           <MdDeleteForever size={20} />
           Delete
@@ -103,7 +103,7 @@ function PostCard({ post, onDeleteSuccess }) {
       </div>
       <button
         onClick={goToEdit}
-        className=" hover:bg-hover flex items-center gap-2  pointer-events-auto
+        className=" hover:bg-hover flex items-center gap-2 font-bold pointer-events-auto
          bg-primary text-white px-3 py-1 rounded absolute right-4 "
       >
         <FiEdit />

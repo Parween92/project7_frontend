@@ -203,7 +203,7 @@ export default function PostEdit() {
           <button
             // onClick={() => navigate(-1)}
             type="submit"
-            className="flex gap-1 items-center bg-primary px-2 py-2  hover:bg-accent text-white rounded"
+            className="flex gap-2 items-center font-bold bg-primary px-3 py-1 hover:bg-accent text-white rounded"
           >
             {" "}
             <MdSave size={20} />
