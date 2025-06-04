@@ -139,7 +139,7 @@ export default function PostEdit() {
         <img
           src={form.cover || post.cover}
           alt={post.title}
-          className="w-full h-40 object-cover rounded mb-3"
+          className="w-full h-40 object-cover rounded mb-5"
         />
 
         <textarea

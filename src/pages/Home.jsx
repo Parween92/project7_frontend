@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <div className="p-8 ">
-      <h2 className="mb-9 text-3xl font-black text-accent ">
+      <h2 className="mb-8 text-3xl font-black text-accent ">
         Travel Stories & Adventures from Around the World
       </h2>
 
