@@ -122,8 +122,22 @@ export default function PostEdit() {
           onChange={handleChange}
         />
 
+        {/* Bild berabeiten kann---> */}
+        <label htmlFor="cover" className="text-text block font-bold mb-1">
+          Cover Image URL
+        </label>
+
+        <input
+          name="cover"
+          value={form.cover}
+          placeholder="Enter image URL"
+          onChange={handleChange}
+          className="mb-4 w-full bg-transparent border-2 rounded-lg border-text text-accent"
+        />
+
+        {/* Bild zeigt den aktuellen Wert */}
         <img
-          src={post.cover}
+          src={form.cover || post.cover}
           alt={post.title}
           className="w-full h-40 object-cover rounded mb-3"
         />
